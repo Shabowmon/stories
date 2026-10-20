@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stories — growth stories, read aloud</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="back" href="https://robertnaanos.com">← Robert Naanos</a>
+  <h1>Stories</h1>
+  <p class="tagline">Growth stories, read aloud by your browser.</p>
+</header>
+
+<!-- Library: one card per story (filled in by app.js) -->
+<section id="library-view">
+  <button id="continue" class="continue hidden"></button>
+  <h2 class="section-title">Library</h2>
+  <div id="library" class="grid">
+    <p class="empty">Stories will appear here.</p>
+  </div>
+</section>
+
+<!-- Story detail: cover, blurb, episode list (filled in by app.js) -->
+<section id="story-view" class="hidden">
+  <button id="back-to-library" class="link-btn">← Library</button>
+  <div id="story-detail"></div>
+</section>
+
+<!-- Player bar: pinned to the bottom of the screen -->
+<footer id="player" class="player" aria-label="Audio player">
+  <div class="now-playing">
+    <div class="np-cover" id="np-cover"></div>
+    <div class="np-text">
+      <div class="np-title" id="np-title">Nothing playing</div>
+      <div class="np-sub" id="np-sub">Pick a story to start</div>
+    </div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+
+  <div class="controls">
+    <button id="stop-btn" class="ctrl" aria-label="Stop" disabled>■</button>
+    <button id="play-btn" class="ctrl play" aria-label="Play" disabled>▶</button>
+    <button id="next-btn" class="ctrl" aria-label="Next episode" disabled>⏭</button>
+  </div>
+
+  <div class="speeds" role="group" aria-label="Playback speed">
+    <button class="speed active" data-rate="1">1x</button>
+    <button class="speed" data-rate="1.5">1.5x</button>
+    <button class="speed" data-rate="2">2x</button>
+    <button class="speed" data-rate="2.5">2.5x</button>
+    <button class="speed" data-rate="3">3x</button>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

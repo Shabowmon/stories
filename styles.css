@@ -1,0 +1,195 @@
+/* Stories v1 — dark-only, mobile-first, Pocket FM-ish */
+
+:root {
+  --bg: #0f0e13;
+  --surface: #1a1820;
+  --surface-2: #24212c;
+  --border: #2f2b38;
+  --text: #f2eff7;
+  --muted: #a29cae;
+  --accent: #ff5a6e;
+  --accent-dim: #7a2a35;
+  --player-h: 168px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0 auto;
+  max-width: 760px;
+  padding: 16px 16px calc(var(--player-h) + 24px);
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Top bar ---------- */
+.back { display: inline-block; color: var(--muted); text-decoration: none; font-size: 0.9rem; margin-bottom: 8px; }
+.back:hover { color: var(--text); }
+h1 { font-size: 1.8rem; margin: 0; }
+.tagline { color: var(--muted); margin: 4px 0 20px; }
+.section-title { font-size: 1.1rem; margin: 0 0 12px; color: var(--muted); font-weight: 600; }
+
+/* ---------- Library grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+}
+.empty { color: var(--muted); }
+
+/* "Continue listening" banner above the library */
+.continue {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--accent-dim);
+  border-radius: 14px;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.continue:hover { border-color: var(--accent); }
+.continue .np-cover { width: 52px; height: 52px; }
+.continue-label { color: var(--accent); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.continue-play { margin-left: auto; flex: none; font-size: 1.3rem; color: var(--accent); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+  transition: border-color 0.2s, transform 0.1s;
+}
+.card:hover { border-color: var(--accent); }
+.card:active { transform: scale(0.98); }
+.card-body { padding: 10px 12px 12px; }
+.card-title { font-weight: 700; }
+.card-meta { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+
+/* Generated "cover art": a gradient tile with the story's initials */
+.cover {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.92);
+  background: linear-gradient(135deg, var(--c1, #5b2a86), var(--c2, #ff5a6e));
+}
+
+/* ---------- Story detail ---------- */
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font: inherit;
+  padding: 0;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.link-btn:hover { color: var(--text); }
+
+.story-head { display: flex; gap: 16px; align-items: center; }
+.cover.big { flex: none; width: 120px; border-radius: 12px; font-size: 2.4rem; }
+.story-title { font-size: 1.5rem; margin: 0 0 4px; }
+.blurb { color: var(--muted); line-height: 1.5; margin: 16px 0 20px; }
+
+.episodes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.episode {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.episode:hover { border-color: var(--accent); }
+.episode.current { border-color: var(--accent); background: var(--surface-2); }
+.ep-num { flex: none; width: 28px; color: var(--muted); font-weight: 700; }
+.episode.current .ep-num { color: var(--accent); }
+.ep-title { flex: 1; min-width: 0; }
+.ep-len { flex: none; color: var(--muted); font-size: 0.85rem; }
+
+/* ---------- Player bar ---------- */
+.player {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: var(--player-h);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.player > * { width: 100%; max-width: 728px; margin: 0 auto; }
+
+.now-playing { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.np-cover {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--c1, var(--surface-2)), var(--c2, var(--surface-2)));
+}
+.np-text { min-width: 0; }
+.np-title, .np-sub { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.np-title { font-weight: 700; }
+.np-sub { color: var(--muted); font-size: 0.85rem; }
+
+.progress { height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0; background: var(--accent); transition: width 0.3s; }
+
+.controls { display: flex; justify-content: center; align-items: center; gap: 18px; }
+.ctrl {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.ctrl.play { width: 60px; height: 60px; font-size: 1.4rem; background: var(--accent); border-color: var(--accent); color: #fff; }
+.ctrl:disabled { opacity: 0.4; cursor: default; }
+
+.speeds { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
+.speed {
+  min-width: 48px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.speed.active { background: var(--accent-dim); border-color: var(--accent); color: var(--text); }
