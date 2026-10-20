@@ -55,8 +55,11 @@ function parseStory(text, file) {
 
 async function loadLibrary() {
   const files = await (await fetch(LIBRARY_DIR + "index.json")).json();
-  const texts = await Promise.all(files.map((f) => fetch(LIBRARY_DIR + f).then((r) => r.text())));
-  state.stories = texts.map((t, i) => parseStory(t, files[i]));
+  const texts = await Promise.all(files.map((f) => fetch(LIBRARY_DIR + f).then((r) => (r.ok ? r.text() : null))));
+  // Skip files that are missing (e.g. a typo in index.json) or have no "## " episodes.
+  state.stories = texts
+    .map((t, i) => (t === null ? console.warn(`Story not found: ${files[i]}`) : parseStory(t, files[i])))
+    .filter((s) => s && (s.episodes.length || console.warn(`No "## " episodes in ${s.id}.txt`)));
 }
 
 // ---------- Rendering ----------

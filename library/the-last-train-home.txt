@@ -4,7 +4,7 @@ Genre: Young Adult · Mystery · Supernatural
 Colors: #263238, #d4a574
 Blurb: A stranded passenger boards a train that shouldn't exist and discovers it carries people to the one place they have been afraid to leave behind.
 
-Episode 1: Platform 6
+## Episode 1: Platform 6
 
 The station was supposed to close at midnight.
 
@@ -70,7 +70,7 @@ He froze.
 
 The doors began to close.
 
-Episode 2: Northbridge
+## Episode 2: Northbridge
 
 Daniel stepped onto the train.
 
@@ -158,7 +158,7 @@ Then she raised her hand.
 
 And waved goodbye.
 
-Episode 3: The Passenger
+## Episode 3: The Passenger
 
 Daniel turned back toward the woman.
 
@@ -228,7 +228,7 @@ Words scratched into the glass.
 
 DANIEL, IF YOU SEE THIS, DON'T GET OFF.
 
-Episode 4: The Choice
+## Episode 4: The Choice
 
 The train slowed.
 
@@ -330,7 +330,7 @@ The doors shut.
 
 The train began moving.
 
-Episode 5: Home
+## Episode 5: Home
 
 Daniel woke up on a bench.
 
